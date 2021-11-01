@@ -1,19 +1,19 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
-from .models import Item
-from .forms import ItemForm
+from .models import Widget
+from .forms import WidgetForm
 
 def index(request):
-    items = Item.objects.all()
-    forms = ItemForm()
-    return render(request, 'index.html', {'items': items, 'forms': forms })
+    widgets = Widget.objects.all()
+    forms = WidgetForm()
+    return render(request, 'index.html', {'widgets': widgets, 'forms': forms })
 
 def delete(request, id):
-    Item.objects.get(id=id).delete()
+    Widget.objects.get(id=id).delete()
     return redirect('/')
 
-def create_item(request):
-    form = ItemForm(request.POST)
+def create_widget(request):
+    form = WidgetForm(request.POST)
     print(request.POST)
     if form.is_valid():
         new_widget = form.save(commit=False)

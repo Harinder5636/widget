@@ -4,7 +4,7 @@
 
 <h1>Wacky Widgets</h1>
 
-{% if items|length == 0 %}
+{% if widgets|length == 0 %}
     <h3>No Widgets Exist</h3>
 {% else %}
     <table class="pure-table pure-table-striped">
@@ -16,11 +16,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in items %}
+            {% for widget in widgets %}
                 <tr>
-                    <td>{{item.description}}</td>
-                    <td>{{item.quantity}}</td>
-                    <td><a href="{% url 'delete_item' item.id %}">X</a></td>
+                    <td>{{widget.description}}</td>
+                    <td>{{widget.quantity}}</td>
+                    <td><a href="{% url 'delete_widget' widget.id %}">X</a></td>
                 </tr>
             {% endfor %}
         </tbody>
