@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Wacky Widgets</h1>
+
+{% if items|length == 0 %}
+    <h3>No Widgets Exist</h3>
+{% else %}
+    <table class="pure-table pure-table-striped">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{item.description}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td><a href="{% url 'delete_item' item.id %}">X</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+<hr>
+<form action="{% url 'add_widget' %}" method="POST" class="pure-form pure-form-aligned">
+    {% csrf_token %}
+    {{forms.as_p}}
+    
+    <button type="submit" class="pure-button">ADD Widget</button>
+</form>
+
+{% endblock %}
